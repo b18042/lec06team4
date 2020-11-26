@@ -54,8 +54,8 @@ public class Lec06team4AuthConfiguration extends WebSecurityConfigurerAdapter {
     // antMatchers().authenticated がantMatchersへのアクセスに認証を行うことを示す
     // antMatchers()の他にanyRequest()と書くとあらゆるアクセス先を表現できる
     // authenticated()の代わりにpermitAll()と書くと認証処理が不要であることを示す
-//    http.authorizeRequests().antMatchers("/Room1/").authenticated();
-//    http.authorizeRequests().antMatchers("/Room2/").authenticated();
+    http.authorizeRequests().antMatchers("/Room1").authenticated();
+    http.authorizeRequests().antMatchers("/Room2").authenticated();
     // http.authorizeRequests().anyRequest().authenticated();
     /**
      * 以下2行はh2-consoleを利用するための設定なので，開発が完了したらコメントアウトすることが望ましい
