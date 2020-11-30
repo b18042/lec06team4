@@ -10,13 +10,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
 public class RoomController {
 
+  /**
+   * @param model
+   * @param prin
+   * @param return
+   */
   @GetMapping("/Room1")
   public String Room1Entry(ModelMap model, Principal prin) {
 
@@ -31,6 +36,22 @@ public class RoomController {
     return "Room1.html";
   }
 
+  /**
+  * @param chat
+  * @param model
+  * @param return
+  */
+  @PostMapping("/Room1")
+  public String room1(@RequestParam String chat, ModelMap model) {
+    model.addAttribute("log", chat);
+    return "Room1.html";
+  }
+
+  /**
+   * @param model
+   * @param prin
+   * @param return
+   */
   @GetMapping("/Room2")
   public String Room2Entry(ModelMap model, Principal prin) {
 
@@ -44,4 +65,16 @@ public class RoomController {
 
     return "Room2.html";
   }
+
+  /**
+  * @param chat
+  * @param model
+  * @param return
+  */
+  @PostMapping("/Room2")
+  public String room2(@RequestParam String chat, ModelMap model) {
+    model.addAttribute("log", chat);
+    return "Room2.html";
+  }
+
 }
