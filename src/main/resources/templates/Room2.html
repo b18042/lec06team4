@@ -7,8 +7,20 @@
 </head>
 
 <body>
-  <h1>Room2 Get!</h1>
+  <a href="/logout">ログアウト</a>
 
+  <h1 th:if="${login_user}">Room2 Get! Hello [[${login_user}]]</h1>
+
+  <form action="/Room2" method="POST" accept-charset="utf-8">
+    <p>チャット<br>
+      <textarea name="chat" rows="4" cols="40" placeholder="ここに会話内容を記入してください"></textarea>
+    </p>
+    <p><input type="submit" value="送信"></p>
+  </form>
+
+  <p th:if="${log}">
+    [[${log}]]
+  </p>
 
 </body>
 
