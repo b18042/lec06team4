@@ -1,0 +1,11 @@
+CREATE TABLE Room1 (
+  id IDENTITY,
+  user CHAR NOT NULL,
+  chatlog CHAR NOT NULL
+);
+
+CREATE TABLE Room2 (
+  id IDENTITY,
+  user CHAR NOT NULL,
+  chatlog CHAR NOT NULL
+);
