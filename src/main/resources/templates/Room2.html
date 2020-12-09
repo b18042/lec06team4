@@ -4,12 +4,17 @@
 <head>
   <meta charset="utf-8">
   <title>Room2html</title>
+  <style>
+    body {
+      background-color: #7cfc00
+    }
+  </style>
 </head>
 
 <body>
   <a href="/logout">ログアウト</a>
 
-  <h1 th:if="${login_user}">Room2 Get! Hello [[${login_user}]]</h1>
+  <h1 th:if="${login_user}">Room2 Get! Hello <font color="red">[[${login_user}]]</font></h1>
 
   <form action="/Room2" method="POST" accept-charset="utf-8">
     <p>チャット<br>
