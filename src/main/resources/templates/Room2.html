@@ -14,7 +14,8 @@
 <body>
   <a href="/logout">ログアウト</a>
 
-  <h1 th:if="${login_user}">Room2 Get! Hello <font color="red">[[${login_user}]]</font></h1>
+  <h1 th:if="${login_user}">Room2 Get! Hello <font color="red">[[${login_user}]]</font>
+  </h1>
 
   <form action="/Room2" method="POST" accept-charset="utf-8">
     <p>チャット<br>
@@ -25,6 +26,16 @@
 
   <p th:if="${log}">
     [[${log}]]
+  </p>
+
+  <p th:if="${Room1}">
+    <b>試合結果</b>
+  <div th:each="room1,stat:${Room1}">
+    <tr>
+      <td>[[${room2.id}]].　投稿者:[[${room2.user}]]<br> </td>
+      <td>　[[${room2.chatlog}]]<br> </td>
+    </tr>
+  </div>
   </p>
 
 </body>
