@@ -28,9 +28,9 @@
     [[${log}]]
   </p>
 
-  <p th:if="${Room1}">
-    <b>試合結果</b>
-  <div th:each="room1,stat:${Room1}">
+  <p th:if="${Room2}">
+    <b>チャット</b>
+  <div th:each="room2,stat:${Room2}">
     <tr>
       <td>[[${room2.id}]].　投稿者:[[${room2.user}]]<br> </td>
       <td>　[[${room2.chatlog}]]<br> </td>
