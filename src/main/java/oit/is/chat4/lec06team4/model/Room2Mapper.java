@@ -15,4 +15,11 @@ public interface Room2Mapper {
   @Select("SELECT * from Room2")
   ArrayList<Room2> selectAllRoom2();
 
+  /**
+   * @param room2
+   */
+  @Insert("INSERT INTO Room2 (user,chatlog) VALUES (#{user},#{chatlog})")
+  @Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
+  void insertRoom2(Room2 room2);
+
 }
