@@ -43,10 +43,17 @@ public class RoomController {
   /**
   * @param chat
   * @param model
+  * @param prin
   * @param return
   */
   @PostMapping("/Room1")
-  public String room1(@RequestParam String chat, ModelMap model) {
+  @Transactional
+  public String room1(@RequestParam String chat, ModelMap model, Principal prin) {
+    String loginUser = prin.getName();
+    Room1 Room1 = new Room1();
+    Room1.setUser(loginUser);
+    Room1.setChatlog(chat);
+    Room1Mapper.insertRoom1(Room1);
     model.addAttribute("log", chat);  //送信されたテキストボックスの内容を取得
     ArrayList<Room1> room1 = Room1Mapper.selectAllRoom1();
     model.addAttribute("Room1", room1);
@@ -70,10 +77,17 @@ public class RoomController {
   /**
   * @param chat
   * @param model
+  * @param prin
   * @param return
   */
   @PostMapping("/Room2")
-  public String room2(@RequestParam String chat, ModelMap model) {
+  @Transactional
+  public String room2(@RequestParam String chat, ModelMap model, Principal prin) {
+    String loginUser = prin.getName();
+    Room2 Room2 = new Room2();
+    Room2.setUser(loginUser);
+    Room2.setChatlog(chat);
+    Room2Mapper.insertRoom2(Room2);
     model.addAttribute("log", chat);
     ArrayList<Room2> room2 = Room2Mapper.selectAllRoom2();
     model.addAttribute("Room2", room2);
