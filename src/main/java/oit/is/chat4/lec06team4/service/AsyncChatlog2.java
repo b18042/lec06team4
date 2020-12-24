@@ -11,46 +11,46 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
-import oit.is.chat4.lec06team4.model.Room1;
-import oit.is.chat4.lec06team4.model.Room1Mapper;
+import oit.is.chat4.lec06team4.model.Room2;
+import oit.is.chat4.lec06team4.model.Room2Mapper;
 
 @Service
-public class AsyncChatlog1 {
+public class AsyncChatlog2 {
   boolean dbUpdated = false;
 
-  private final Logger logger = LoggerFactory.getLogger(AsyncChatlog1.class);
+  private final Logger logger = LoggerFactory.getLogger(AsyncChatlog2.class);
 
   @Autowired
-  Room1Mapper Room1Mapper;
+  Room2Mapper Room2Mapper;
 
-  public ArrayList<Room1> syncShowRoom1() {
-    return Room1Mapper.selectAllRoom1();
+  public ArrayList<Room2> syncShowRoom2() {
+    return Room2Mapper.selectAllRoom2();
   }
 
   /**
-   * @param room1
+   * @param room2
    * @return
    */
   @Transactional
-  public Room1 syncInsertRoom1(Room1 room1) {
-    Room1Mapper.insertRoom1(room1);
+  public Room2 syncInsertRoom2(Room2 room2) {
+    Room2Mapper.insertRoom2(room2);
     this.dbUpdated = true;
-    return room1;
+    return room2;
   }
 
   /**
    * @param emitter
    */
   @Async
-  public void asyncShowRoom1(SseEmitter emitter) {
+  public void asyncShowRoom2(SseEmitter emitter) {
     try {
       while (true) {
         TimeUnit.SECONDS.sleep(5);
         if (false == dbUpdated) {
           continue;
         }
-        ArrayList<Room1> room1 = this.syncShowRoom1();
-        emitter.send(room1);
+        ArrayList<Room2> room2 = this.syncShowRoom2();
+        emitter.send(room2);
         dbUpdated = false;
       }
     } catch (Exception e) {
@@ -59,7 +59,7 @@ public class AsyncChatlog1 {
     } finally {
       emitter.complete();
     }
-    System.out.println("asyncShowRoom1 complete");
+    System.out.println("asyncShowRoom2 complete");
   }
 
 }

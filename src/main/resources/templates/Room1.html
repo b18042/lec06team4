@@ -25,9 +25,9 @@
           var end_tbody = "</tbody>";
           var bgn_tr = "<tr>";
           var end_tr = "</tr>";
-          var idx = "<td>" + i + ".";
+          var idx = "<td>" + (i + 1) + ".";
           var r_user = "　投稿者:" + room_list[i].user + "</td>";
-          var r_chatlog = '<td colspan="2">' + room_list[i].chatlog + "</td>";
+          var r_chatlog = '<td colspan="2">' + room_list[i].chatlog + "　</td>";
           room_table = room_table + bgn_table + bgn_tbody + bgn_tr + idx + r_user + end_tr + bgn_tr + r_chatlog + end_tr + end_tbody + end_table;
         }
         dbody.innerHTML = room_table;
@@ -58,7 +58,7 @@
             <td>[[${room1.id}]].　投稿者:[[${room1.user}]]</td>
           </tr>
           <tr>
-            <td colspan="2">　[[${room1.chatlog}]]</td>
+            <td colspan="2">[[${room1.chatlog}]]</td>
           </tr>
         </tbody>
       </table>
