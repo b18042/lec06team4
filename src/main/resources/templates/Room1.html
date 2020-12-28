@@ -9,6 +9,31 @@
       background-color: #E0FFFF
     }
   </style>
+  <script>
+    window.onload = function () {
+      var sse = new EventSource('/step1');
+      sse.onmessage = function (event) {
+        console.log("sse.onmessage");
+        console.log(event.data);
+        var dbody = document.getElementById("room1_log");
+        var room_list = JSON.parse(event.data);
+        var room_table = "";
+        for (var i = 0; i < room_list.length; i++) {
+          var bgn_table = '<table border="1">';
+          var end_table = "</table>";
+          var bgn_tbody = "<tbody>";
+          var end_tbody = "</tbody>";
+          var bgn_tr = "<tr>";
+          var end_tr = "</tr>";
+          var idx = "<td>" + (i + 1) + ".";
+          var r_user = "　投稿者:" + room_list[i].user + "</td>";
+          var r_chatlog = '<td colspan="2">' + room_list[i].chatlog + "　</td>";
+          room_table = room_table + bgn_table + bgn_tbody + bgn_tr + idx + r_user + end_tr + bgn_tr + r_chatlog + end_tr + end_tbody + end_table;
+        }
+        dbody.innerHTML = room_table;
+      }
+    }
+  </script>
 </head>
 
 <body>
@@ -18,25 +43,28 @@
   </h1>
 
   <form action="/Room1" method="POST" accept-charset="utf-8">
-    <p>チャット<br>
+    <p>チャット入力欄<br>
       <textarea name="chat" rows="4" cols="40" placeholder="ここに会話内容を記入してください"></textarea>
     </p>
     <p><input type="submit" value="送信"></p>
   </form>
 
-  <p th:if="${log}">
-    [[${log}]]
-  </p>
-
-  <p th:if="${Room1}">
-    <b>チャット</b>
-  <div th:each="room1,stat:${Room1}">
-    <tr>
-      <td>[[${room1.id}]].　投稿者:[[${room1.user}]]<br> </td>
-      <td>　[[${room1.chatlog}]]<br> </td>
-    </tr>
+  <b>チャット</b>
+  <div id="room1_log">
+    <span th:if="${Room1}">
+      <table border="1" th:each="room1,stat:${Room1}">
+        <tbody>
+          <tr>
+            <td>[[${room1.id}]].　投稿者:[[${room1.user}]]</td>
+          </tr>
+          <tr>
+            <td colspan="2">[[${room1.chatlog}]]</td>
+          </tr>
+        </tbody>
+      </table>
+    </span>
   </div>
-  </p>
+
 
 </body>
 
